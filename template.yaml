@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Kinesis2MSK
+
+  Ingest data from Kinesis and output to MSK
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 5
+    MemorySize: 128
+
+Resources:
+  KafkaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: kafka_layer
+      CompatibleRuntimes:
+        - python3.9
+    Metadata:
+      BuildMethod: python3.9
+  Kinesis2MSKFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: kinesis_to_msk/
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Policies:
+        - AWSLambdaExecute
+        - AmazonKinesisReadOnlyAccess
+        - AWSLambdaVPCAccessExecutionRole
+      Layers:
+        - Ref: KafkaLayer
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-087f1d9e26d9140ad # attach an existed security group
+        SubnetIds:
+          - subnet-0eafba9fee295d045 # binding with an existed subnet
+          - subnet-093cb4ccabff0d3d5 # binding with an existed subnet
+          - subnet-08c55a13b324420b8 # binding with an existed subnet
+      Events:
+        Kinesis2MSK:
+          Type: Kinesis # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Stream: arn:aws:kinesis:us-east-1:784675006790:stream/poc-kinesis # Create kinesis stream before run it
+            StartingPosition: TRIM_HORIZON
+            BatchSize: 10
+            MaximumBatchingWindowInSeconds: 10
+            Enabled: true
+            ParallelizationFactor: 8
+            MaximumRetryAttempts: 100
+            BisectBatchOnFunctionError: true
+            MaximumRecordAgeInSeconds: 604800
+            DestinationConfig:
+              OnFailure:
+                Type: SNS
+                Destination: arn:aws:sns:us-east-1:784675006790:email # Create SNS Topic before run it
+            TumblingWindowInSeconds: 0
+            FunctionResponseTypes:
+              - ReportBatchItemFailures
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  Kinesis2MSKFunction:
+    Description: "Kinesis to MSK Lambda Function ARN"
+    Value: !GetAtt Kinesis2MSKFunction.Arn
+  Kinesis2MSKFunctionIamRole:
+    Description: "Implicit IAM Role created for Kinesis to MSK function"
+    Value: !GetAtt Kinesis2MSKFunctionRole.Arn
