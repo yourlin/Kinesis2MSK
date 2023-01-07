@@ -5,28 +5,12 @@
         "kinesisSchemaVersion": "1.0",
         "partitionKey": "1",
         "sequenceNumber": "49590338271490256608559692538361571095921575989136588898",
-        "data": "eyJudW0iOiAxMDAwMCwgInRzIjogIjIwMjItMTItMjEgMTI6NDY6MzYifQ==",
+        "data": "ewogICJldmVudF90eXBlIjogIl9TTVMuU1VDQ0VTUyIsCiAgImV2ZW50X3RpbWVzdGFtcCI6IDE2NzI4MjgyODc4MTMsCiAgImFycml2YWxfdGltZXN0YW1wIjogMTY3MjgyODI5MzkyNiwKICAiZXZlbnRfdmVyc2lvbiI6ICIzLjEiLAogICJhcHBsaWNhdGlvbiI6IHsKICAgICJhcHBfaWQiOiAiMzdkMjQxNmI0MzlmNDZhZWFhYTIzMGQ2NmRhMDAwMDAiLAogICAgInNkayI6IHt9CiAgfSwKICAiY2xpZW50IjogewogICAgImNsaWVudF9pZCI6ICI1eDRlbnlkam5zcXVucng3dTgzMmFzZGZnaGprIgogIH0sCiAgImRldmljZSI6IHsKICAgICJwbGF0Zm9ybSI6IHt9CiAgfSwKICAic2Vzc2lvbiI6IHt9LAogICJhdHRyaWJ1dGVzIjogewogICAgInNlbmRlcl9yZXF1ZXN0X2lkIjogIjhucDdkZjRibjE4cWppOGwzYnN0bnJpa2g4Zm45bzZtdGVrMzVrMDAiLAogICAgImRlc3RpbmF0aW9uX3Bob25lX251bWJlciI6ICIrMTIzNDU2Nzg5MCIsCiAgICAicmVjb3JkX3N0YXR1cyI6ICJTVUNDRVNTRlVMIiwKICAgICJpc29fY291bnRyeV9jb2RlIjogIlNHIiwKICAgICJtY2NfbW5jIjogIjUyNTAxIiwKICAgICJudW1iZXJfb2ZfbWVzc2FnZV9wYXJ0cyI6ICIxIiwKICAgICJtZXNzYWdlX2lkIjogIjhucDdkZjRibjE4cWppOGwzYnN0bnJpa2hkZmdoamtsIiwKICAgICJtZXNzYWdlX3R5cGUiOiAiVHJhbnNhY3Rpb25hbCIsCiAgICAib3JpZ2luYXRpb25fcGhvbmVfbnVtYmVyIjogIlNlY3VyZSIsCiAgICAiY3VzdG9tZXJfY29udGV4dCI6ICJ7XCJ0b3BpY19uYW1lXCI6XCJUZXN0VG9waWNcIn0iCiAgfSwKICAibWV0cmljcyI6IHsKICAgICJwcmljZV9pbl9taWxsaWNlbnRzX3VzZCI6IDUzMjYKICB9LAogICJhd3NBY2NvdW50SWQiOiAiODg4ODAwMDA4ODg4Igp9",
         "approximateArrivalTimestamp": 1545084650.987
       },
       "eventSource": "aws:kinesis",
       "eventVersion": "1.0",
       "eventID": "shardId-000000000006:49590338271490256608559692538361571095921575989136588898",
-      "eventName": "aws:kinesis:record",
-      "invokeIdentityArn": "arn:aws:iam::123456789012:role/lambda-role",
-      "awsRegion": "us-east-2",
-      "eventSourceARN": "arn:aws:kinesis:us-east-2:123456789012:stream/lambda-stream"
-    },
-    {
-      "kinesis": {
-        "kinesisSchemaVersion": "1.0",
-        "partitionKey": "1",
-        "sequenceNumber": "49590338271490256608559692540925702759324208523137515618",
-        "data": "eyJudW0iOiAxMDAwMCwgInRzIjogIjIwMjItMTItMjEgMTI6NDY6MzYifQ==",
-        "approximateArrivalTimestamp": 1545084711.166
-      },
-      "eventSource": "aws:kinesis",
-      "eventVersion": "1.0",
-      "eventID": "shardId-000000000006:49590338271490256608559692540925702759324208523137515618",
       "eventName": "aws:kinesis:record",
       "invokeIdentityArn": "arn:aws:iam::123456789012:role/lambda-role",
       "awsRegion": "us-east-2",
